@@ -37,7 +37,7 @@ Route::get('/book/destroy/{id}', [BookController::class, 'destroy'])->middleware
 Route::post('/book/update/{id}', [BookController::class, 'update'])->middleware('auth');
 Route::post('/book', [BookController::class, 'store']);
 
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 Route::get('/user/{id}', [UserController::class, 'show']);
 
