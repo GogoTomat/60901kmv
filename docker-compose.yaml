@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    restart: always
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: hello@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+
+  laravel:
+    build: .
+    container_name: laravel
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgresql
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: postgresql
+      DB_PORT: 5432
+      DB_DATABASE: laravel
+      DB_USERNAME: admin
+      DB_PASSWORD: admin
